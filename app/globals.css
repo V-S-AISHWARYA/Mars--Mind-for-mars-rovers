@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-panel: var(--panel);
+  --color-panel-foreground: var(--panel-foreground);
+  --color-mars: var(--mars);
+  --color-tech: var(--tech);
+  --color-safe: var(--safe);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-grid: var(--grid);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+
+  --background: oklch(0.17 0.012 260);
+  --foreground: oklch(0.94 0.008 250);
+
+  --panel: oklch(0.215 0.014 258);
+  --panel-foreground: oklch(0.94 0.008 250);
+  --card: oklch(0.215 0.014 258);
+  --card-foreground: oklch(0.94 0.008 250);
+  --popover: oklch(0.2 0.014 258);
+  --popover-foreground: oklch(0.94 0.008 250);
+
+  --primary: oklch(0.66 0.17 45);
+  --primary-foreground: oklch(0.16 0.02 45);
+  --secondary: oklch(0.27 0.014 258);
+  --secondary-foreground: oklch(0.94 0.008 250);
+  --muted: oklch(0.27 0.012 258);
+  --muted-foreground: oklch(0.68 0.012 255);
+  --accent: oklch(0.3 0.03 220);
+  --accent-foreground: oklch(0.95 0.01 220);
+  --destructive: oklch(0.62 0.2 22);
+
+  --border: oklch(0.98 0.01 250 / 12%);
+  --input: oklch(0.98 0.01 250 / 14%);
+  --ring: oklch(0.66 0.17 45);
+
+  --mars: oklch(0.66 0.17 45);
+  --tech: oklch(0.78 0.12 205);
+  --safe: oklch(0.74 0.15 155);
+  --warn: oklch(0.82 0.15 85);
+  --danger: oklch(0.63 0.2 22);
+  --grid: oklch(0.98 0.01 250 / 6%);
+
+  --chart-1: oklch(0.66 0.17 45);
+  --chart-2: oklch(0.78 0.12 205);
+  --chart-3: oklch(0.74 0.15 155);
+  --chart-4: oklch(0.82 0.15 85);
+  --chart-5: oklch(0.63 0.2 22);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+  }
+}
+
+@layer utilities {
+  .font-tech {
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+  .grid-backdrop {
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .scanline {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      oklch(0 0 0 / 12%) 3px,
+      oklch(0 0 0 / 12%) 4px
+    );
+  }
+  .glow-mars {
+    box-shadow: 0 0 0 1px oklch(0.66 0.17 45 / 40%), 0 0 24px oklch(0.66 0.17 45 / 22%);
+  }
+}
+
+@keyframes marsmind-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-pulse-soft { animation: marsmind-pulse 1.6s ease-in-out infinite; }
+
+@keyframes marsmind-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-sweep { animation: marsmind-sweep 3.2s linear infinite; }
+
+@keyframes marsmind-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: marsmind-rise 0.5s ease-out both; }
